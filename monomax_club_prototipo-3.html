@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monomax Club — Analizador de fútbol</title>
+<style>
+:root{--bg:#090d0b;--panel:#151b16;--panel2:#20291e;--text:#fffdf2;--muted:#c0c7b9;--green:#39e75f;--blue:#f4c542;--line:#354332;--amber:#ffd447}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#090d0b,#151d13 55%,#090d0b);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{padding:18px clamp(16px,4vw,38px);display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#090d0bee;backdrop-filter:blur(12px);z-index:3}
+.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:.4px}.ball{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#1a321c;border:1px solid var(--green);font-size:24px}.brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;letter-spacing:1.5px}
+main{max-width:1150px;margin:auto;padding:24px 16px 60px}.hero{padding:24px;border:1px solid #1d4351;border-radius:18px;background:radial-gradient(ellipse at top right,#21451e 0%,transparent 48%),linear-gradient(120deg,#222b19,#101710);margin-bottom:18px}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase}.hero h1{font-size:clamp(25px,4vw,40px);line-height:1.1;margin:8px 0}.hero p{max-width:700px;color:var(--muted);margin-bottom:0}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.card{background:linear-gradient(150deg,#102238,#0b1929);border:1px solid var(--line);border-radius:15px;padding:18px;min-width:0}.span8{grid-column:span 8}.span4{grid-column:span 4}.span6{grid-column:span 6}.span12{grid-column:span 12}.card h2{font-size:17px;margin:0 0 5px}.sub{color:var(--muted);font-size:13px;margin:0 0 16px}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;color:#bfd0e3;font-size:12px;margin:10px 0 6px}input,select{width:100%;border:1px solid #2b4663;background:#111810;color:var(--text);border-radius:9px;padding:11px 12px;font:inherit;outline:none}input:focus,select:focus{border-color:var(--green)}button{border:0;background:var(--green);color:#052219;border-radius:10px;padding:12px 16px;font-weight:800;font:inherit;cursor:pointer}button.secondary{background:#29351f;color:var(--text);border:1px solid #536442}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#111810;border:1px solid #354332;border-radius:12px;padding:13px}.metric .label{color:var(--muted);font-size:12px}.metric strong{display:block;font-size:25px;margin:4px 0;color:var(--green)}.metric small{color:var(--muted)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}th{color:#a9c1d9;font-weight:700}td:last-child,th:last-child{text-align:right}.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#1e3b20;color:var(--green);font-size:11px;font-weight:800}.notice{color:var(--muted);font-size:12px;margin-top:12px}.bar{height:8px;background:#293325;border-radius:99px;overflow:hidden;margin:7px 0 14px}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--green));border-radius:99px}.empty{color:var(--muted);padding:18px 0}.foot{margin-top:18px;color:#8198b3;font-size:12px;text-align:center}
+@media(max-width:760px){.span8,.span4,.span6{grid-column:span 12}.metrics{grid-template-columns:repeat(2,1fr)}.formrow{grid-template-columns:1fr}header{position:static}.hero{padding:19px}.card{padding:15px}th,td{padding:9px 5px;font-size:12px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="ball">🐵⚽</div><div>MONOMAX CLUB <small>FÚTBOL · ANALIZADOR PREPARTIDO</small></div></div><span class="pill">PROTOTIPO PERSONAL</span></header>
+<main>
+<section class="hero"><div class="eyebrow">Analiza antes de apostar</div><h1>Datos primero.<br>Decisiones más informadas.</h1><p>Registra los últimos partidos de un jugador o equipo y calcula promedios y frecuencia histórica para tiros a puerta, goles, córners y tarjetas. Esta primera versión permite probar los cálculos; aún no está conectada a datos deportivos en vivo.</p></section>
+<div class="grid">
+<section class="card span8"><h2>🧮 Analizador de estadísticas</h2><p class="sub">Introduce los valores de los últimos partidos, separados por comas. Ejemplo: 2, 1, 3, 0, 2.</p>
+<label for="name">Jugador o equipo</label><input id="name" value="Jugador de ejemplo" placeholder="Nombre del jugador o equipo">
+<div class="formrow">
+<div><label for="market">Mercado a analizar</label><select id="market"><option value="sot">Tiros a puerta</option><option value="goals">Goles del equipo</option><option value="corners">Córners</option><option value="cards">Tarjetas</option></select></div>
+<div><label for="line">Línea de apuesta (ej. 1.5)</label><input id="line" type="number" min="0" step="0.5" value="1.5"></div>
+</div>
+<label for="values">Resultados por partido (de más reciente a más antiguo)</label><input id="values" value="2,1,3,0,2,2,1,4,1,2" placeholder="2, 1, 3, 0, 2">
+<div class="actions"><button id="calc">Calcular análisis</button><button class="secondary" id="sample">Cargar ejemplo</button><button class="secondary" id="clear">Limpiar</button></div>
+<p class="notice">Usa estadísticas del mismo mercado y de una fuente consistente. Para tiros a puerta de jugadores, registra tiros a puerta individuales, no tiros totales.</p></section>
+<section class="card span4"><h2>📊 Resultado</h2><p class="sub" id="resultTitle">Esperando datos</p>
+<div class="metrics" style="grid-template-columns:repeat(2,1fr)">
+<div class="metric"><div class="label">Partidos</div><strong id="n">—</strong></div>
+<div class="metric"><div class="label">Promedio</div><strong id="avg">—</strong></div>
+<div class="metric"><div class="label">Superó línea</div><strong id="hit">—</strong><small id="hitCount">—</small></div>
+<div class="metric"><div class="label">Mediana</div><strong id="median">—</strong></div>
+</div><p class="notice" id="interpretation">Introduce datos para generar un resumen.</p></section>
+<section class="card span6"><h2>📈 Últimos partidos</h2><p class="sub">Comparación rápida con la línea seleccionada.</p><div id="chart" class="empty">El gráfico aparecerá cuando calcules los datos.</div></section>
+<section class="card span6"><h2>✅ Lista de verificación prepartido</h2><p class="sub">Marca estos puntos antes de considerar una apuesta.</p>
+<label><input type="checkbox" style="width:auto;margin-right:8px">Confirmé que el jugador probablemente será titular.</label>
+<label><input type="checkbox" style="width:auto;margin-right:8px">Revisé minutos jugados en los partidos anteriores.</label>
+<label><input type="checkbox" style="width:auto;margin-right:8px">Consideré si juega en casa o fuera y el rival.</label>
+<label><input type="checkbox" style="width:auto;margin-right:8px">Verifiqué la cuota y las reglas de liquidación del mercado.</label>
+<label><input type="checkbox" style="width:auto;margin-right:8px">Los datos proceden de una fuente fiable y comparable.</label>
+<p class="notice">El historial no garantiza el siguiente resultado. Evita apostar dinero que no puedas permitirte perder.</p></section>
+<section class="card span12"><h2>🔌 Próximo paso: conectar datos reales</h2><p class="sub">La versión actual calcula estadísticas con los datos que introduces. Para mostrar calendarios, jugadores y estadísticas automáticamente, habrá que configurar una API y proteger su clave.</p><table><thead><tr><th>Fuente</th><th>Ventaja</th><th>Limitación a comprobar</th></tr></thead><tbody><tr><td>API-Football</td><td>Partidos, estadísticas y jugadores; plan gratuito anunciado</td><td>Cuota diaria y cobertura histórica por competición</td></tr><tr><td>football-data.org</td><td>Resultados, calendarios y competiciones</td><td>No basta por sí sola para todos los datos individuales de tiros a puerta</td></tr></tbody></table><p class="notice">No pegues claves privadas en esta página ni en archivos públicos. Para conectar una API con seguridad, lo ideal es usar una pequeña función de servidor.</p><div class="actions"><button class="secondary" onclick="window.open('https://www.api-football.com/pricing','_blank')">Ver API-Football</button><button class="secondary" onclick="window.open('https://www.football-data.org/coverage','_blank')">Ver cobertura de football-data.org</button></div></section>
+</div><div class="foot">Monomax Club · Herramienta de análisis estadístico, no garantía de ganancias.</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const marketNames={sot:"Tiros a puerta",goals:"Goles",corners:"Córners",cards:"Tarjetas"};
+function parseValues(){const raw=$("values").value.trim();if(!raw)throw Error("Introduce al menos un resultado.");const vals=raw.split(/[,\s;]+/).filter(Boolean).map(Number);if(vals.some(v=>!Number.isFinite(v)||v<0))throw Error("Usa números iguales o mayores que cero, separados por comas.");return vals;}
+function calc(){try{const vals=parseValues(),line=Number($("line").value);if(!Number.isFinite(line)||line<0)throw Error("La línea debe ser un número igual o mayor que cero.");const n=vals.length,avg=vals.reduce((a,b)=>a+b,0)/n,s=vals.slice().sort((a,b)=>a-b),median=n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2,hit=vals.filter(v=>v>line).length,p=hit/n*100; $("n").textContent=n;$("avg").textContent=avg.toFixed(2);$("hit").textContent=p.toFixed(0)+"%";$("hitCount").textContent=hit+" de "+n+" partidos";$("median").textContent=median.toFixed(1);$("resultTitle").textContent=($("name").value.trim()||"Selección")+" · "+marketNames[$("market").value];$("interpretation").textContent=`En esta muestra, el resultado superó ${line} en ${hit} de ${n} partidos. Es una frecuencia histórica, no una predicción garantizada.`;const max=Math.max(1,...vals,line);$("chart").className="";$("chart").innerHTML=vals.map((v,i)=>`<div style="display:grid;grid-template-columns:72px 1fr 32px;gap:8px;align-items:center;margin:10px 0"><span style="color:var(--muted);font-size:12px">Partido ${i+1}</span><div class="bar" style="margin:0;position:relative"><span style="width:${Math.min(100,v/max*100)}%;background:${v>line?'linear-gradient(90deg,#f4c542,#39e75f)':'#54708c'}"></span></div><strong style="text-align:right">${v}</strong></div>`).join("")+`<p class="notice">Línea de referencia: ${line}. “Superó” significa estrictamente mayor que la línea.</p>`;}catch(e){alert(e.message)}}
+$("calc").addEventListener("click",calc);$("sample").addEventListener("click",()=>{$("name").value="Jugador de ejemplo";$("market").value="sot";$("line").value="1.5";$("values").value="2,1,3,0,2,2,1,4,1,2";calc()});$("clear").addEventListener("click",()=>{$("values").value="";$("n").textContent=$("avg").textContent=$("hit").textContent=$("median").textContent="—";$("hitCount").textContent="—";$("resultTitle").textContent="Esperando datos";$("interpretation").textContent="Introduce datos para generar un resumen.";$("chart").className="empty";$("chart").textContent="El gráfico aparecerá cuando calcules los datos."});
+calc();
+</script>
+</body>
+</html>
